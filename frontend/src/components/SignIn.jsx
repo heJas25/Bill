@@ -20,8 +20,8 @@ const SignIn = ({ onToggleForm }) => {
     };
 
     return (
-        <section className='flex justify-center w-full bg-amber-400'>
-            <div className="min-h-[90vh] ml-96 bg-white flex items-center justify-center px-4">
+        <section className='flex justify-center  w-[100vw]'>
+            <div className="min-h-[90vh]  bg-white flex mt-6 items-center rounded-sm justify-center px-8">
                 <div className="max-w-md w-full space-y-8">
                     <div className="text-center">
                         <h2 className="text-4xl font-bold text-black mb-2">Connexion</h2>

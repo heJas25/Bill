@@ -23,7 +23,8 @@ const SignUp = ({ onToggleForm }) => {
   };
 
   return (
-    <div className="min-h-[80vh] bg-white flex mt-1 rounded-sm items-center justify-center p-4">
+    <section className='flex justify-center  w-[100vw]'>
+    <div className="min-h-[80vh] bg-white  flex mt-6 rounded-sm items-center justify-center p-6">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-black mb-2">Inscription</h2>
@@ -146,7 +147,7 @@ const SignUp = ({ onToggleForm }) => {
               <button
                 type="button"
                 onClick={onToggleForm}
-                className="font-medium text-black hover:text-gray-600"
+                className="font-medium text-white ml-1 hover:text-gray-600"
               >
                 Se connecter
               </button>
@@ -155,6 +156,7 @@ const SignUp = ({ onToggleForm }) => {
         </form>
       </div>
     </div>
+    </section>
   );
 };
 
