@@ -1,8 +1,19 @@
-function signup(req, res) {
-const email = req.body.email;
-const password = req.body.password;
+const Users  = require("../models/Users.js")
 
-const emailExists = email in users
+async function signup(req, res) {
+    const email = await req.body.email;
+    const password = await req.body.password;
+
+    const userExists = await Users.findAll({
+        where: { email : email }
+    })
+
+    if(userExists) {
+        res.redirect("/auth/signin")
+    } else {
+        await Users.create({ email, password })
+        console.log("User created successfully")
+    }
 
 }
 
