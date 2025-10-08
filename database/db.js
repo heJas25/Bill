@@ -1,8 +1,8 @@
 const { Sequelize} =require('sequelize');
-
-const sequelize =new Sequelize('Bill_db','postgres','password',{
-    host:'localhost',
-    port:5432,
+ import { DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT } from '../config/env';
+const sequelize =new Sequelize(DB_NAME, DB_USER, DB_PASS,{
+    host:DB_HOST,
+    port:DB_PORT,
     dialect:'postgres',
 })
 
