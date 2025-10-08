@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../database/db.js");
 const Products = require("./Products.js")
 
-const ListProd = sequelize.define("ListProd", {
+const listProd = sequelize.define("listProd", {
   id_prod: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -30,11 +30,11 @@ const ListProd = sequelize.define("ListProd", {
 });
 
 //Connect the listProd table to the Products and Bills tables
-ListProd.belongsTo(Products, { foreignKey: 'id_prod' })
-ListProd.belongsTo(Bills, { foreignKey: 'id_bill' })
+listProd.belongsTo(Products, { foreignKey: 'id_prod' })
+listProd.belongsTo(Bills, { foreignKey: 'id_bill' })
 
 // Automatically calculate the total price before saving it
-ListProd.beforeSave(async (listProd) => {
+listProd.beforeSave(async (listProd) => {
   const product = await Products.findByPk(listProd.id_prod);
 
   if(product) {

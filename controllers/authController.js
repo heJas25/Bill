@@ -1,27 +1,42 @@
-const Users  = require("../models/Users.js")
+const users = require("../models/Users.js")
+const bcrypt = require('bcrypt');
+
 
 async function signup(req, res) {
     const email = await req.body.email;
     const password = await req.body.password;
-
-    const userExists = await Users.findAll({
-        where: { email : email }
+    const salt = await bcrypt.genSalt(10);
+    
+    const userExists = await users.findOne({
+        where: { email: email }
     })
 
-    if(userExists) {
-        res.redirect("/auth/signin")
+    if (userExists) {
+        console.log("userExists =", userExists);
+
     } else {
-        await Users.create({ email, password })
+        
+      bcrypt.hash(password, salt, async (err, hash)=>{
+            if (err){
+                console.error(err);
+            } else {
+                const hashedPassword =  hash;
+                console.log("hashedPassword =", hashedPassword);
+
+                await users.create({ email, password: hashedPassword })//place it here so that the password is know and not undefined
+            }
+        })
+
         console.log("User created successfully")
     }
 
 }
 
 function signin(req, res) {
-    res.send('signin');
+    res.send('welcome to sign in');
 }
 
 function signout(req, res) {
-    
+
 }
-module.exports = { signin, signup,signout };                                                                                        
+module.exports = { signin, signup, signout };                                                                                        
